@@ -1,0 +1,120 @@
+% Campus option (influences effects of other options)
+\DeclareOptionBeamer{campus}{\def\beamer@uconn@campus{#1}}
+% Watermark oak leaf location
+\DeclareOptionBeamer{watermark}{\def\beamer@uconn@watermark{#1}}
+% Footline logo option
+\DeclareOptionBeamer{logo}{\def\beamer@uconn@logo{#1}}
+
+% Default options
+\ExecuteOptionsBeamer{campus=none}
+\ExecuteOptionsBeamer{watermark=none}
+\ExecuteOptionsBeamer{logo=none}
+
+\ProcessOptionsBeamer
+
+\mode<presentation>
+
+% Encode campus options
+\def\beamer@uconn@campusnone{none}
+\def\beamer@uconn@campushealth{health}
+\def\beamer@uconn@campusjdh{jdh}
+\def\beamer@uconn@campusaverypoint{averypoint}
+\def\beamer@uconn@campushartford{hartford}
+\def\beamer@uconn@campusstamford{stamford}
+\def\beamer@uconn@campuswaterbury{waterbury}
+% Encode watermark options
+\def\beamer@uconn@watermarkside{side}
+\def\beamer@uconn@watermarkcorner{corner}
+% Encode logo options
+\def\beamer@uconn@logonone{none}
+\def\beamer@uconn@logosingle{single}
+\def\beamer@uconn@logoside{side}
+\def\beamer@uconn@logostacked{stacked}
+
+% Encode paper dimensions
+\def\beamer@paperwidth{\paperwidth}
+\def\beamer@paperheight{\paperheight}
+
+% Background image
+\usebackgroundtemplate{
+  % Side watermark
+  \ifx\beamer@uconn@watermark\beamer@uconn@watermarkside
+    \includegraphics[height=\paperheight, trim=170 0 0 0, clip=true, decodearray={0.95 1 0.95 1 0.95 1}]{images/oak-leaf/oak-leaf-blue.png}
+  \fi
+  % Corner watermark
+  \ifx\beamer@uconn@watermark\beamer@uconn@watermarkcorner
+    \vbox to \paperheight{\vspace*{.1\beamer@paperheight}\hbox to \paperwidth{\hfil
+      \includegraphics[height=.333\paperheight, decodearray={0.95 1 0.95 1 0.95 1}]{images/oak-leaf/oak-leaf-blue.png}
+    \hspace*{.1\beamer@paperheight}}\vfil}
+  \fi
+}
+
+% Footline logo
+\unless\ifx\beamer@uconn@logo\beamer@uconn@logonone
+  \setbeamertemplate{footline}
+  {
+    \leavevmode
+    \hbox{
+      \begin{beamercolorbox}[wd=\paperwidth, dp=3ex, leftskip=.5cm, rightskip=.5cm]{institution in head/foot}
+        \hfill
+        % Single logo
+        \ifx\beamer@uconn@logo\beamer@uconn@logosingle
+          \includegraphics[height=4ex]{images/logos/uconn-wordmark-single-blue.png}
+        \fi
+        % Side logos
+        \ifx\beamer@uconn@logo\beamer@uconn@logoside
+          \ifx\beamer@uconn@campus\beamer@uconn@campusnone
+            \includegraphics[height=4ex]{images/logos/uconn-wordmark-side-blue.png}
+          \fi
+          \ifx\beamer@uconn@campus\beamer@uconn@campushealth
+            \includegraphics[height=4ex]{images/logos/uconn-health-wordmark-side-blue.png}
+          \fi
+          \ifx\beamer@uconn@campus\beamer@uconn@campusjdh
+            \includegraphics[height=4ex]{images/logos/jdh-side-blue.png}
+          \fi
+          \ifx\beamer@uconn@campus\beamer@uconn@campusaverypoint
+            \includegraphics[height=4ex]{images/logos/avery-point-wordmark-side-blue.png}
+          \fi
+          \ifx\beamer@uconn@campus\beamer@uconn@campushartford
+            \includegraphics[height=4ex]{images/logos/hartford-wordmark-side-blue.png}
+          \fi
+          \ifx\beamer@uconn@campus\beamer@uconn@campusstamford
+            \includegraphics[height=4ex]{images/logos/stamford-wordmark-side-blue.png}
+          \fi
+          \ifx\beamer@uconn@campus\beamer@uconn@campuswaterbury
+            \includegraphics[height=4ex]{images/logos/waterbury-wordmark-side-blue.png}
+          \fi
+        \fi
+        % Stacked logos
+        \ifx\beamer@uconn@logo\beamer@uconn@logostacked
+          \ifx\beamer@uconn@campus\beamer@uconn@campusnone
+            \includegraphics[height=4ex]{images/logos/uconn-wordmark-stacked-blue.png}
+          \fi
+          \ifx\beamer@uconn@campus\beamer@uconn@campushealth
+            \includegraphics[height=4ex]{images/logos/uconn-health-wordmark-stacked-blue.png}
+          \fi
+          \ifx\beamer@uconn@campus\beamer@uconn@campusjdh
+            \includegraphics[height=4ex]{images/logos/jdh-stacked-blue.png}
+          \fi
+          \ifx\beamer@uconn@campus\beamer@uconn@campusaverypoint
+            \includegraphics[height=4ex]{images/logos/avery-point-wordmark-stacked-blue.png}
+          \fi
+          \ifx\beamer@uconn@campus\beamer@uconn@campushartford
+            \includegraphics[height=4ex]{images/logos/hartford-wordmark-stacked-blue.png}
+          \fi
+          \ifx\beamer@uconn@campus\beamer@uconn@campusstamford
+            \includegraphics[height=4ex]{images/logos/stamford-wordmark-stacked-blue.png}
+          \fi
+          \ifx\beamer@uconn@campus\beamer@uconn@campuswaterbury
+            \includegraphics[height=4ex]{images/logos/waterbury-wordmark-stacked-blue.png}
+          \fi
+        \fi
+      \end{beamercolorbox}
+    }
+    \vskip0pt
+  }
+\fi
+% More woodmarks can be found at the Brand Standard website:
+% https://brand.uconn.edu/downloads/logos/
+
+\mode<all>
